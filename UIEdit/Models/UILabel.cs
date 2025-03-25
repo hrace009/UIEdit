@@ -1,9 +1,13 @@
-﻿namespace UIEdit.Models {
-    public class UILabel : UIControl {
+﻿namespace UIEdit.Models
+{
+    public class UILabel : UIControl
+    {
         public string Text { get; set; }
         public string Color { get; set; }
         public string OutlineColor { get; set; }
+        public string InnerTextColor { get; set; }
         public string TextUpperColor { get; set; }
         public string TextLowerColor { get; set; }
+        public int Align { get; set; }
     }
 }

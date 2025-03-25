@@ -15,9 +15,11 @@ namespace UIEdit.Windows {
         public SourceFile CurrentSourceFile { get; set; }
         public LayoutController LayoutController { get; set; }
         public AvalonEditorSearchController TextSearchController { get; set; }
+        public static int ElementsName;
 
         public MainWindow() {
             InitializeComponent();
+            ElementsName = 0;
             Dispatcher.UnhandledException += ApplicationOnDispatcherUnhandledException;
             ProjectController = new ProjectController();
             LayoutController = new LayoutController();
@@ -27,6 +29,10 @@ namespace UIEdit.Windows {
             TxtSearch.TextChanged += TxtSearchOnTextChanged;
             TbSearchInText.TextChanged += TbSearchInTextOnTextChanged;
             TbSearchInText.PreviewKeyDown += TbSearchInTextOnPreviewKeyDown;
+            ProjectController.LoadLastState();
+            TbInterfacesPath.Text = ProjectController.InterfacesPath;
+            LbDialogs.ItemsSource = ProjectController.Files;
+            TbSurfacesPath.Text = ProjectController.SurfacesPath;
         }
 
         private void TbSearchInTextOnPreviewKeyDown(object sender, KeyEventArgs e) {
@@ -128,6 +134,48 @@ namespace UIEdit.Windows {
 
         private void BtnGotoGithub_OnClick(object sender, RoutedEventArgs e) {
             System.Diagnostics.Process.Start("https://github.com/perfectdev/UIEdit");
+        }
+
+        private void CbBtnName_Checked(object sender, RoutedEventArgs e)
+        {
+            ElementsName = 1;
+            var exceptionParse = LayoutController.Parse(TeFile.Text, ProjectController.SurfacesPath);
+            if (exceptionParse == null)
+                LayoutController.RefreshLayout(DialogCanvas);
+            else
+            {
+                DialogCanvas.Children.Clear();
+                DialogCanvas.Children.Add(
+                    new TextBlock
+                    {
+                        Text = exceptionParse.Message,
+                        MaxWidth = DialogCanvas.ActualWidth,
+                        Margin = new Thickness(0),
+                        TextWrapping = TextWrapping.Wrap,
+                        Foreground = new SolidColorBrush { Color = Colors.Red },
+                    });
+            }
+        }
+
+        private void CbBtName_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ElementsName = 0;
+            var exceptionParse = LayoutController.Parse(TeFile.Text, ProjectController.SurfacesPath);
+            if (exceptionParse == null)
+                LayoutController.RefreshLayout(DialogCanvas);
+            else
+            {
+                DialogCanvas.Children.Clear();
+                DialogCanvas.Children.Add(
+                    new TextBlock
+                    {
+                        Text = exceptionParse.Message,
+                        MaxWidth = DialogCanvas.ActualWidth,
+                        Margin = new Thickness(0),
+                        TextWrapping = TextWrapping.Wrap,
+                        Foreground = new SolidColorBrush { Color = Colors.Red },
+                    });
+            }
         }
     }
 }

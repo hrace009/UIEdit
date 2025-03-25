@@ -8,13 +8,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="1*" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.ColumnSpan="3">
             <Grid.RowDefinitions>
@@ -40,21 +40,22 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center">
-                    <TextBlock Text="Developed by pdev © 2013" Foreground="DarkGreen" Grid.Column="1" Margin="10 2" HorizontalAlignment="Right"/>
-                    <TextBlock Text="Freeware" Foreground="Blue" Grid.Column="2" Margin="10 2" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Developed by pdev © 2013" Foreground="ForestGreen" Grid.Column="1" Margin="10 0" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Edited by slug © 2020" Foreground="Orange" Grid.Column="1" Margin="10 0" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Freeware" Foreground="BlueViolet" Grid.Column="2" Margin="10 0" HorizontalAlignment="Left"/>
                 </StackPanel>
-                <Button x:Name="BtnGotoGithub" Grid.Column="3" Margin="10 0 0 2" Click="BtnGotoGithub_OnClick" Cursor="Hand">
+                <Button x:Name="BtnGotoGithub" Grid.Column="3" Margin="10 0 0 0" Click="BtnGotoGithub_OnClick" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Resources/github.png" Height="40"/>
                     </StackPanel>
                 </Button>
             </Grid>
             <Button Content="interface.pck files:" Padding="5 2" Grid.Row="1" Click="BtnInterfacesPath_OnClick"/>
-            <TextBlock x:Name="TbInterfacesPath" Margin="5 0" Grid.Row="1" Grid.Column="1"/>
+            <TextBlock x:Name="TbInterfacesPath" Margin="5,0,0,0" Grid.Row="1" Grid.Column="1"/>
             <Button Content="surfaces.pck files:" Padding="5 2" Grid.Row="2" Click="BtnSurfacesPath_OnClick"/>
-            <TextBlock x:Name="TbSurfacesPath" Margin="5 0" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock x:Name="TbSurfacesPath" Margin="5,0,0,0" Grid.Row="2" Grid.Column="1"/>
         </Grid>
-        <GroupBox x:Name="GbSourceFiles" Header="Dialogs" Grid.Row="1" Margin="0 0 5 0">
+        <GroupBox x:Name="GbSourceFiles" Header="Dialogs" Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -73,8 +74,8 @@
                 <ListBox x:Name="LbDialogs" ItemTemplate="{StaticResource SourceFileItemTemplate}" Grid.Row="1"/>
             </Grid>
         </GroupBox>
-        <GridSplitter Grid.Row="1" Width="5" ResizeDirection="Columns" ShowsPreview="False" Background="{StaticResource SplitterBackground}"/>
-        <Grid Grid.Column="1" Grid.Row="1">
+        <GridSplitter Grid.Row="1" Grid.Column="0" Width="5" ResizeDirection="Columns" ShowsPreview="False" Background="{StaticResource SplitterBackground}" Margin="0,0"/>
+        <Grid Grid.Column="1" Grid.Row="1" Margin="0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
@@ -123,7 +124,10 @@
                 </Button>
             </Grid>
         </Grid>
-        <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" ResizeDirection="Columns" ShowsPreview="False" Background="{StaticResource SplitterBackground}"/>
-        <Canvas x:Name="DialogCanvas" Background="Black" ClipToBounds="True" Grid.Row="1" Grid.Column="2"/>
+            <GridSplitter Grid.Row="1" Grid.Column="1" Width="5" ResizeDirection="Columns" ShowsPreview="False" Background="{StaticResource SplitterBackground}"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="2">
+            <Canvas ClipToBounds="True" x:Name="DialogCanvas" Background="Black" Width="1920"  Height="1080" Grid.Row="1" Grid.Column="2"/>
+        </ScrollViewer>
+        <CheckBox x:Name="CbBtName" Content="Названия элементов" ToolTip="Если рядом друг с другом слишком много элементов чтение затруднится" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5" VerticalAlignment="Center" Grid.Row="2" Checked="CbBtnName_Checked" Unchecked="CbBtName_Unchecked"/>
     </Grid>
 </Window>
