@@ -128,6 +128,6 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="2">
             <Canvas ClipToBounds="True" x:Name="DialogCanvas" Background="Black" Width="1920"  Height="1080" Grid.Row="1" Grid.Column="2"/>
         </ScrollViewer>
-        <CheckBox x:Name="CbBtName" Content="Названия элементов" ToolTip="Если рядом друг с другом слишком много элементов чтение затруднится" Grid.Column="2" HorizontalAlignment="Left" Margin="5,5" VerticalAlignment="Center" Grid.Row="2" Checked="CbBtnName_Checked" Unchecked="CbBtName_Unchecked"/>
+        <CheckBox x:Name="CbBtName" Content="Element Names" ToolTip="If there are too many elements next to each other, reading will be difficult." Grid.Column="2" HorizontalAlignment="Left" Margin="5,5" VerticalAlignment="Center" Grid.Row="2" Checked="CbBtnName_Checked" Unchecked="CbBtName_Unchecked"/>
     </Grid>
 </Window>
